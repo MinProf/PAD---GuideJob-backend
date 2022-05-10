@@ -17,7 +17,7 @@ public class UserService implements UserDetailsService {
 
     @Override
     public User loadUserByUsername(String email) throws UsernameNotFoundException {
-        // TO DO: Implementare metoda
+        // TODO: Implementare metoda
         return null;
 
     }
