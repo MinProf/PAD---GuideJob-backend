@@ -11,5 +11,5 @@ import java.util.Optional;
 @Repository
 @Transactional(readOnly = true)
 public interface JobRepo extends JpaRepository<Job, Long> {
-    Optional<Job> findByIpName(String name);
+    Optional<Job> findById(Long id);
 }

@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 //@ComponentScan(basePackages={"<base package name>"})
-//@EnableJpaRepositories(basePackages="<repository package name>")
+@EnableJpaRepositories(basePackages="com.project.GuideJob.repo")
 @EnableTransactionManagement
-@EntityScan(basePackages="<entity package name>")
+@EntityScan(basePackages="com.project.GuideJob.model")
 public class GuideJobApplication {
 
 	public static void main(String[] args) {
