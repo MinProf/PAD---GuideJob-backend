@@ -21,7 +21,7 @@ import static javax.persistence.GenerationType.AUTO;
 @Entity
 @EqualsAndHashCode
 public class User implements UserDetails {
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = AUTO)
     private long Id;
     private String firstName;

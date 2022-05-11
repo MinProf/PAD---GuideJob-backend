@@ -2,16 +2,15 @@ package com.project.GuideJob.service.implementation;
 
 import com.project.GuideJob.model.User;
 import com.project.GuideJob.repo.UserRepo;
+import com.project.GuideJob.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 
 @Service
 @AllArgsConstructor
-public class UserService implements UserDetailsService {
+public class UserServiceImplementation implements UserService {
     private final UserRepo userRepo;
     private final static String USER_NOT_FOUND_MSG="USER WITH EMAIL:%s NOT FOUND";
 

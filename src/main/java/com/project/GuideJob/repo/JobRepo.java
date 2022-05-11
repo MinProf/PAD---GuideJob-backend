@@ -2,7 +2,14 @@ package com.project.GuideJob.repo;
 
 import com.project.GuideJob.model.Job;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-public interface JobRepo extends JpaRepository <Job, Long>{
-    Job findByIpName(String name);
+import java.util.Optional;
+
+@Repository
+@Transactional(readOnly = true)
+public interface JobRepo extends JpaRepository<Job, Long> {
+    Optional<Job> findByIpName(String name);
 }
