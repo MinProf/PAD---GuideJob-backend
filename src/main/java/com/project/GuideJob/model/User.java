@@ -1,10 +1,7 @@
 package com.project.GuideJob.model;
 
 import com.project.GuideJob.Role.UserRole;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +17,7 @@ import static javax.persistence.GenerationType.AUTO;
 @NoArgsConstructor
 @Entity
 @EqualsAndHashCode
+@Data
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = AUTO)
