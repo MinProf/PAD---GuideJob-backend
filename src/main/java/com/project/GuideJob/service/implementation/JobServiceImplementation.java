@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
-@Service
+@Service(value = "jobService")
 public class JobServiceImplementation implements JobService {
     @Override
     public Job create(Job job) {

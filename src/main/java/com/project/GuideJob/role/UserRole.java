@@ -1,4 +1,4 @@
-package com.project.GuideJob.Role;
+package com.project.GuideJob.role;
 
 public enum UserRole {
     USER,

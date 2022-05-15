@@ -1,6 +1,6 @@
 package com.project.GuideJob.model;
 
-import com.project.GuideJob.Role.UserRole;
+import com.project.GuideJob.role.UserRole;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
