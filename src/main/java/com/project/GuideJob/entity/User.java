@@ -9,10 +9,10 @@ import java.util.Set;
 public class User {
 
     @Id
-    private String userName;
+    private String email;
     private String userFirstName;
     private String userLastName;
-    private String userPassword;
+    private String password;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLE",
             joinColumns = {
@@ -25,11 +25,11 @@ public class User {
     private Set<Role> role;
 
     public String getUserName() {
-        return userName;
+        return email;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String email) {
+        this.email = email;
     }
 
     public String getUserFirstName() {
@@ -49,11 +49,11 @@ public class User {
     }
 
     public String getUserPassword() {
-        return userPassword;
+        return password;
     }
 
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
+    public void setUserPassword(String password) {
+        this.password = password;
     }
 
     public Set<Role> getRole() {
