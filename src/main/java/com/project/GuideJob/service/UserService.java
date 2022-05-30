@@ -1,21 +1,73 @@
 package com.project.GuideJob.service;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
-import com.project.GuideJob.model.User;
-import com.project.GuideJob.model.UserBody;
+import com.project.GuideJob.dao.RoleDao;
+import com.project.GuideJob.dao.UserDao;
+import com.project.GuideJob.entity.Role;
+import com.project.GuideJob.entity.User;
 
-import java.util.List;
-public interface UserService extends UserDetailsService {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-    User save(UserBody user);
+import java.util.HashSet;
+import java.util.Set;
 
-    List<User> findAll();
+@Service
+public class UserService {
 
-    void delete(int id);
+    @Autowired
+    private UserDao userDao;
 
-    User findOne(String username);
+    @Autowired
+    private RoleDao roleDao;
 
-    User findById(int id);
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    UserBody update(UserBody userBody);
+    public void initRoleAndUser() {
+
+        Role adminRole = new Role();
+        adminRole.setRoleName("Admin");
+        adminRole.setRoleDescription("Admin role");
+        roleDao.save(adminRole);
+
+        Role userRole = new Role();
+        userRole.setRoleName("User");
+        userRole.setRoleDescription("Default role for newly created record");
+        roleDao.save(userRole);
+
+        User adminUser = new User();
+        adminUser.setUserName("admin123");
+        adminUser.setUserPassword(getEncodedPassword("admin@pass"));
+        adminUser.setUserFirstName("admin");
+        adminUser.setUserLastName("admin");
+        Set<Role> adminRoles = new HashSet<>();
+        adminRoles.add(adminRole);
+        adminUser.setRole(adminRoles);
+        userDao.save(adminUser);
+
+//        User user = new User();
+//        user.setUserName("raj123");
+//        user.setUserPassword(getEncodedPassword("raj@123"));
+//        user.setUserFirstName("raj");
+//        user.setUserLastName("sharma");
+//        Set<Role> userRoles = new HashSet<>();
+//        userRoles.add(userRole);
+//        user.setRole(userRoles);
+//        userDao.save(user);
+    }
+
+    public User registerNewUser(User user) {
+        Role role = roleDao.findById("User").get();
+        Set<Role> userRoles = new HashSet<>();
+        userRoles.add(role);
+        user.setRole(userRoles);
+        user.setUserPassword(getEncodedPassword(user.getUserPassword()));
+
+        return userDao.save(user);
+    }
+
+    public String getEncodedPassword(String password) {
+        return passwordEncoder.encode(password);
+    }
 }
