@@ -2,22 +2,22 @@ package com.project.GuideJob.entity;
 
 public class JwtRequest {
 
-    private String email;
-    private String password;
+    private String userName;
+    private String userPassword;
 
     public String getUserName() {
-        return email;
+        return userName;
     }
 
-    public void setUserName(String email) {
-        this.email = email;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getUserPassword() {
-        return password;
+        return userPassword;
     }
 
-    public void setUserPassword(String password) {
-        this.password = password;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 }

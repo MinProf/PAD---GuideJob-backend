@@ -1,7 +1,5 @@
 package com.project.GuideJob.entity;
 
-import com.project.GuideJob.entity.Role;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,10 +7,10 @@ import java.util.Set;
 public class User {
 
     @Id
-    private String email;
+    private String userName;
     private String userFirstName;
     private String userLastName;
-    private String password;
+    private String userPassword;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLE",
             joinColumns = {
@@ -25,11 +23,11 @@ public class User {
     private Set<Role> role;
 
     public String getUserName() {
-        return email;
+        return userName;
     }
 
-    public void setUserName(String email) {
-        this.email = email;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getUserFirstName() {
@@ -49,11 +47,11 @@ public class User {
     }
 
     public String getUserPassword() {
-        return password;
+        return userPassword;
     }
 
-    public void setUserPassword(String password) {
-        this.password = password;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
     public Set<Role> getRole() {
