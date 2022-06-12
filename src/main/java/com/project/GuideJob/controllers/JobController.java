@@ -6,9 +6,8 @@ import com.project.GuideJob.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,9 +23,15 @@ public class JobController {
     }
 
     @GetMapping("/jobs/{id}")
-    public Job getJobById(@PathVariable("id") long jobId){
-//        ResponseEntity<Job> matchingJob = new ResponseEntity<Job>(jobService.getJobById(jobId), HttpStatus.OK);
-//        return  matchingJob;
-        return jobService.getJobById(jobId);
+    public ResponseEntity<Job> getJobById(@PathVariable("id") long jobId) {
+        ResponseEntity<Job> matchingJob = new ResponseEntity<Job>(jobService.getJobById(jobId), HttpStatus.OK);
+        return matchingJob;
+    }
+
+    @PostMapping("/forAdmin")
+    @PreAuthorize("hasRole('Admin')")
+    public Job addJob(@RequestBody Job job){
+        return jobService.addJob(job);
+
     }
 }

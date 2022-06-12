@@ -27,12 +27,6 @@ public class UserController {
         return userService.registerNewUser(user);
     }
 
-    @GetMapping({"/forAdmin"})
-    @PreAuthorize("hasRole('Admin')")
-    public String forAdmin(){
-        return "This URL is only accessible to the admin";
-    }
-
     @GetMapping({"/forUser"})
     @PreAuthorize("hasRole('User')")
     public String forUser(){

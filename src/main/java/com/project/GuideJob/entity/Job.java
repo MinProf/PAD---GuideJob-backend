@@ -25,7 +25,6 @@ public class Job {
 
     private String type;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date date;
 
     private String city;

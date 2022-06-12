@@ -31,5 +31,9 @@ public class JobService {
         }
     }
 
+    public Job addJob(Job job){
+        return jobDao.save(job);
+    }
+
 
 }
