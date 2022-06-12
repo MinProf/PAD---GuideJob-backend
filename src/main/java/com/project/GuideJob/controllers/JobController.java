@@ -18,7 +18,7 @@ public class JobController {
     private JobService jobService;
 
     @GetMapping("/jobs")
-    public List<Job> getAllJobs(){
+    public List<Job> getAllJobs() {
         return jobService.getAllJobs();
     }
 
@@ -30,8 +30,20 @@ public class JobController {
 
     @PostMapping("/forAdmin")
     @PreAuthorize("hasRole('Admin')")
-    public Job addJob(@RequestBody Job job){
+    public Job addJob(@RequestBody Job job) {
         return jobService.addJob(job);
+
+    }
+
+    @DeleteMapping("jobs/delete/{id}")
+    @PreAuthorize("hasRole('Admin')")
+    public String deleteJob(@PathVariable("id") Long id) {
+        if (jobService.jobExists(id)) {
+            jobService.deleteJob(id);
+            return "Job deleted successfully";
+        } else {
+            return "Job was not found";
+        }
 
     }
 }

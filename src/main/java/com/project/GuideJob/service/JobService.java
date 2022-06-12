@@ -31,8 +31,21 @@ public class JobService {
         }
     }
 
+    public boolean jobExists(long jobId){
+        Optional<Job> job = jobDao.findById(jobId);
+        if(job.isPresent()){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
     public Job addJob(Job job){
         return jobDao.save(job);
+    }
+
+    public void deleteJob(Long id){
+        jobDao.deleteById(id);
     }
 
 
