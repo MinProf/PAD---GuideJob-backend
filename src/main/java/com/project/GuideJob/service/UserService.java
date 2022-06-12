@@ -44,6 +44,7 @@ public class UserService {
         Set<Role> adminRoles = new HashSet<>();
         adminRoles.add(adminRole);
         adminUser.setRole(adminRoles);
+        adminUser.setAge(21);
         userDao.save(adminUser);
 
     }
