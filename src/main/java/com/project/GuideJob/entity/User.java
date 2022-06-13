@@ -6,7 +6,8 @@ import java.util.Set;
 @Entity
 public class User {
 
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String userName;
     private String userFirstName;
     private String userLastName;
@@ -22,6 +23,14 @@ public class User {
     )
     private Set<Role> role;
     private int age;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public int getAge() {
         return age;
