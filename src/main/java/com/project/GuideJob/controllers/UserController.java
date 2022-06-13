@@ -24,7 +24,9 @@ public class UserController {
 
     @PostMapping({"/registerNewUser"})
     public User registerNewUser(@RequestBody User user) {
-        return userService.registerNewUser(user);
+        if(userService.checkUsername(user))
+            return userService.registerNewUser(user);
+        else return null;
     }
 
     @GetMapping({"/forUser"})
