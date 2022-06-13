@@ -9,7 +9,10 @@ import com.project.GuideJob.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class JobApplyService {
@@ -52,5 +55,14 @@ public class JobApplyService {
         } else {
             return false;
         }
+    }
+    
+    public List<Job> viewAppliedJobs(long userId){
+        List<JobApply> jobApplyList = jobApplyDao.findById(userId).stream().collect(Collectors.toList());
+        List<Job> jobList = new ArrayList<>();
+        for (JobApply jobApply : jobApplyList) {
+            jobList.add(jobDao.findById(jobApply.getJobId()).get());
+        }
+        return jobList;
     }
 }
